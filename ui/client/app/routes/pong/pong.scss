@@ -1,0 +1,47 @@
+@import "../../core/constants";
+@import "../../core/mixins";
+
+pong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: $dark-1;
+  .game {
+    background: $dark-2;
+    padding: 32px;
+    box-sizing: border-box;
+    .top {
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .md-button {
+        margin: 0;
+      }
+    }
+    .scores {
+      font-size: 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 40px;
+      .score {
+        color: $color-highlight;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: font-weight 0.3s ease;
+        will-change: font-weight;
+        div {
+          color: $color;
+          margin-right: 8px;
+        }
+        &.ahead {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

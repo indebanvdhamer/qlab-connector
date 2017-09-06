@@ -1,0 +1,31 @@
+<div class="loader fade" ng-class="{show: !vm.workspace || !vm.cues}">
+  <md-progress-circular></md-progress-circular>
+</div>
+
+<div class="content fade" ng-class="{show: vm.workspace && vm.cues}">
+
+  <div class="box">
+    <md-toolbar md-scroll-shrink>
+      <div class="md-toolbar-tools">{{vm.workspace.displayName}}</div>
+    </md-toolbar>
+
+    <div class="controls">
+      <div class="cues horizontal">
+        <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'global'" action="vm.action(cue)"></cue>
+      </div>
+    </div>
+
+    <md-tabs class="controls" md-border-bottom>
+      <md-tab label="DE zaal">
+        <div class="tab-content cues">
+          <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'DE'" action="vm.action(cue)"></cue>
+        </div>
+      </md-tab>
+      <md-tab label="Blauwe zaal">
+        <div class="tab-content cues">
+          <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'BZ'" action="vm.action(cue)"></cue>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </div>
+</div>

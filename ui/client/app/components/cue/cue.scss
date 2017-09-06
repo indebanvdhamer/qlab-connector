@@ -1,0 +1,292 @@
+@import "../../core/constants";
+@import "../../core/mixins";
+
+cue {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 4px 0;
+  box-sizing: border-box;
+  height: 86px;
+
+  &.preWait {
+    height: 180px;
+  }
+
+  .md-button {
+    margin: 0;
+    // &.armed {
+    //   background: #008000;
+    // }
+    // &.disarmed {
+    //   background: $dark-4;
+    // }
+    // &:hover.armed {
+    //   background: #008000 !important;
+    // }
+    // &:hover.disarmed {
+    //   background: $color !important;
+    // }
+  }
+
+  .svg-icon {
+    height: 32px;
+    width: 32px;
+    margin: -2px;
+    path {
+      fill: $color;
+    }
+    &:hover {
+      path {
+        fill: $color-highlight;
+      }
+    }
+  }
+
+  .playback {
+    background: $dark-4;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 288px;
+    overflow: hidden;
+
+    .inner {
+      width: 240px;
+      min-width: 240px;
+      padding: 8px;
+      box-sizing: border-box;
+      &.button-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &.preWait-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+    }
+    .preWait-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      min-width: 224px;
+      width: 224px;
+      .play {
+        margin-bottom: 0;
+        .svg-icon {
+          margin-right: 2px;
+        }
+      }
+      .time {
+        min-width: 100%;
+        width: 100%;
+      }
+      .progress {
+        min-width: 100%;
+        width: 100%;
+      }
+      .animate-container {
+        width: 100%;
+      }
+    }
+    .lock-container {
+      height: 100%;
+      width: 48px;
+      min-width: 48px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      position: relative;
+      .lock {
+
+      }
+      .armed {
+        opacity: 0;
+        transform: scale(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        will-change: opacity, transform;
+        .svg-icon path {
+          fill: $green !important;
+        }
+      }
+      .waiting {
+        opacity: 0;
+        transform: scale(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        will-change: opacity, transform;
+      }
+      &::after {
+        content: '';
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: calc(100% - 16px);
+        margin: auto;
+        width: 1px;
+        position: absolute;
+        background: $color;
+      }
+    }
+    .play {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 8px;
+      color: $color-highlight;
+      font-size: 16px;
+      position: relative;
+      .name {
+        position: absolute;
+        left: 46px;
+        transition: left 0.3s ease;
+        will-change: left;
+      }
+      .svg-icon {
+        height: 32px;
+        width: 32px;
+        margin-right: 14px;
+        pointer-events: all;
+        opacity: 1;
+        transition: opacity 0.2s ease 0.1s;
+        will-change: opacity;
+      }
+    }
+    .animate-container {
+      max-width: 240px;
+      transition: max-width 0.3s ease;
+      will-change: max-width;
+      overflow: hidden;
+    }
+    .time {
+      width: 224px;
+      min-width: 224px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $color-highlight;
+      font-size: 14px;
+      padding-bottom: 4px;
+      box-sizing: border-box;
+    }
+    .progress {
+      width: 224px;
+      min-width: 224px;
+      height: 2px;
+      margin: 4px;
+      width: calc(100% - 8px);
+      background: #888;
+      position: relative;
+      .elapsed {
+        position: relative;
+        z-index: 1;
+        background: $color-highlight;
+        height: 100%;
+        width: 0%;
+        transition: width 1s linear;
+        will-change: width;
+        &.finished {
+          transition-duration: 0s;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          height: 8px;
+          width: 8px;
+          right: -4px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          background: $color-highlight;
+          border-radius: 50%;
+          box-sizing: border-box;
+        }
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        background: $color-highlight;
+        left: -4px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        background: #888;
+        right: -4px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+      }
+    }
+    &.playing {
+      .svg-icon:not(.lock) path {
+        fill: $green !important;
+      }
+      .waiting {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    &.armed {
+      .armed {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    &.isLocked {
+      .animate-container {
+        max-width: 0px;
+      }
+      .play {
+        .svg-icon {
+          opacity: 0;
+          pointer-events: none;
+          transition-delay: 0s;
+        }
+        .name {
+          left: 0;
+        }
+      }
+    }
+  }
+  md-input-container {
+    margin: 0;
+    max-width: 120px;
+    label {
+      color: $color !important;
+    }
+    input {
+      color: $color !important;
+      border-color: $color !important;
+      transition: color 0.3s ease, border-color 0.3s ease;
+      will-change: color, border-color;
+      &:focus {
+        color: $color-highlight !important;
+        border-color: $color-highlight !important;
+      }
+      &::placeholder {
+        color: $color-highlight !important;
+      }
+    }
+    .md-errors-spacer {
+      display: none;
+    }
+  }
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

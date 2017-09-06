@@ -1,0 +1,13 @@
+<div class="game">
+  <div class="top">
+    <div class="back-to-work">
+      <md-button class="md-raised" ui-sref="dashboard">Aan het werk!</md-button>
+    </div>
+    <div class="scores">
+      <div class="score" ng-class="{ahead: vm.scores.player > vm.scores.computer}"><div>Player</div>{{vm.scores.player}}</div>
+      <div class="score" ng-class="{ahead: vm.scores.player < vm.scores.computer}"><div>Computer</div>{{vm.scores.computer}}</div>
+    </div>
+  </div>
+  <div class="board">
+  </div>
+</div>
