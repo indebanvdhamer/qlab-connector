@@ -5,7 +5,7 @@ const schouwburg = [
     location: 'global',
     command: 'disarm_stop',
     label: 'Disarm en stop all',
-    numbers: [51, 51, 150, 151]
+    numbers: [50, 51, 150, 151]
   },
   {
     number: 0,
