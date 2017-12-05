@@ -12,7 +12,7 @@ const udpSend = (data, raw) => {
   if(data.packets && !data.packets.length) {
     return;
   }
-  log(`QLab ${raw ? 'raw ' : ''}->`, data);
+  log(`QLab ${raw ? 'raw ' : ''}->`, JSON.stringify(data));
 
   udpPort.send(data, config.qlab.host.address, config.qlab.host.port);
 };

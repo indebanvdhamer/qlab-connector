@@ -62,7 +62,7 @@ const controller = function(Socket, $scope, errors) {
   });
   socket.on('qlab.response', data => {
     this.error = null;
-    // console.log('qlab.response', data);
+    console.log('qlab.response', data);
     clearTimeout(qlabConnectionTimeout);
     if(data.workspace) {
       this.workspace = data.workspace;
