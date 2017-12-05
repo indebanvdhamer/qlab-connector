@@ -8,6 +8,32 @@ dashboard {
   height: 100%;
   user-select: none;
 
+  .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 101;
+    background: #212121;
+    pointer-events: none;
+    i {
+      margin-bottom: 16px;
+      font-size: 32px;
+      color: $orange;
+    }
+  }
+
   md-toolbar {
     border-radius: 4px 4px 0 0;
     background: $dark-2;
@@ -37,6 +63,7 @@ dashboard {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column; //IE11
     background: $dark-2;
   }
   .box {
@@ -60,7 +87,8 @@ dashboard {
     padding: 16px;
     box-sizing: border-box;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
     align-content: flex-start;
@@ -89,9 +117,10 @@ dashboard {
     box-sizing: border-box;
     md-tab-content {
       border-radius: 0 0 4px 4px;
+      overflow-x: hidden;
       .tab-content {
-        height: 100%;
-        max-height: 100%;
+        height: 450px;
+        max-height: 450px;
         box-sizing: border-box;
         background: $dark-3;
       }
@@ -120,5 +149,12 @@ dashboard {
     &.show {
       opacity: 1;
     }
+  }
+  .secret-pong {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 24px;
+    width: 24px;
   }
 }

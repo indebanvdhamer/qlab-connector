@@ -50,6 +50,7 @@ cue {
     align-items: center;
     justify-content: flex-start;
     max-width: 288px;
+    min-width: 288px;
     overflow: hidden;
 
     .inner {
@@ -191,10 +192,11 @@ cue {
         background: $color-highlight;
         height: 100%;
         width: 0%;
-        transition: width 1s linear;
-        will-change: width;
+        max-width: calc(100% - 8px) !important;
+        // transition: width 1s linear;
+        // will-change: width;
         &.finished {
-          transition-duration: 0s;
+          transition: none;
         }
         &::after {
           content: '';

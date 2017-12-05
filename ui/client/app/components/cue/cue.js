@@ -18,6 +18,7 @@ const cueComponent = {
         $element.addClass('preWait');
       }
     };
+
   },
   controllerAs: 'vm'
 };

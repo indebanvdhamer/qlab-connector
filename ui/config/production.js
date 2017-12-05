@@ -1,7 +1,7 @@
 //used on production
 
 module.exports = {
-  api: '/',
+  api: '',
   //log level in order ['info', 'debug', 'warn', 'error']
   //info will log everyting
   log: 'error'

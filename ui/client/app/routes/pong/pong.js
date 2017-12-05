@@ -163,8 +163,10 @@ const controller = function($element, $scope) {
 
   const canvasContainer = document.getElementsByClassName('board');
   canvasContainer[0].appendChild(canvas);
-  window.addEventListener('keydown', event => keysDown[event.keyCode] = true);
-  window.addEventListener('keyup', event => delete keysDown[event.keyCode]);
+  const keydown = event => keysDown[event.keyCode] = true;
+  const keyup = event => delete keysDown[event.keyCode];
+  window.addEventListener('keydown', keydown);
+  window.addEventListener('keyup', keyup);
 
   const player = new Player();
   const computer = new Computer();
@@ -190,6 +192,11 @@ const controller = function($element, $scope) {
     animate(step);
   };
   animate(step);
+
+  this.$onDestroy = () => {
+    window.removeEventListener('keydown', keydown);
+    window.removeEventListener('keyup', keyup);
+  };
 
 };
 

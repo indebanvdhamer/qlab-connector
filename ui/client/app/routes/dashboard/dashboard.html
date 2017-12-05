@@ -1,21 +1,26 @@
-<div class="loader fade" ng-class="{show: !vm.workspace || !vm.cues}">
+<div class="loader fade" ng-class="{show: (!vm.workspace || !vm.cues) && !vm.error}">
   <md-progress-circular></md-progress-circular>
 </div>
 
-<div class="content fade" ng-class="{show: vm.workspace && vm.cues}">
+<div class="error fade" ng-class="{show: vm.error}">
+  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+  <span>{{vm.error}}</span>
+</div>
+
+<div class="content fade" ng-class="{show: vm.workspace && vm.cues && !vm.error}">
 
   <div class="box">
-    <md-toolbar md-scroll-shrink>
+    <md-toolbar>
       <div class="md-toolbar-tools">{{vm.workspace.displayName}}</div>
     </md-toolbar>
 
-    <div class="controls">
+    <div show-gt-sm hide-sm hide-xs class="controls">
       <div class="cues horizontal">
         <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'global'" action="vm.action(cue)"></cue>
       </div>
     </div>
 
-    <md-tabs class="controls" md-border-bottom>
+    <md-tabs show-gt-sm hide-sm hide-xs class="controls" md-border-bottom>
       <md-tab label="DE zaal">
         <div class="tab-content cues">
           <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'DE'" action="vm.action(cue)"></cue>
@@ -27,5 +32,25 @@
         </div>
       </md-tab>
     </md-tabs>
+
+    <md-content class="controls" hide-gt-sm>
+      <div class="cues horizontal">
+        <section>
+      <md-subheader class="md-primary">Algemeen</md-subheader>
+        <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'global'" action="vm.action(cue)"></cue>
+      </section>
+        <section>
+      <md-subheader class="md-primary">DE Zaal</md-subheader>
+        <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'DE'" action="vm.action(cue)"></cue>
+      </section>
+        <section>
+      <md-subheader class="md-primary">Blauwe Zaal</md-subheader>
+        <cue data="cue" ng-repeat="cue in ::vm.cues" ng-if="::cue.location === 'BZ'" action="vm.action(cue)"></cue>
+      </section>
+      </div>
+    </md-content>
+
   </div>
+
+  <div class="secret-pong" ui-sref="pong"></div>
 </div>

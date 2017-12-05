@@ -32,7 +32,8 @@ module.exports = {
               plugins: [
                 'syntax-decorators',
                 ['angularjs-annotate', {explicitOnly: true}],
-                'lodash'
+                'lodash',
+                'transform-es2015-shorthand-properties'
               ]
             }
           }

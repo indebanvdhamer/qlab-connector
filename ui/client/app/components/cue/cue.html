@@ -18,10 +18,10 @@
       <div class="animate-container">
         <div class="time">
           <div>{{vm.data.preWaitElapsedParsed || 0 | playbackTime}}</div>
-          <div>{{vm.data.preWaitParsed || 0 | playbackTime}}</div>
+          <div>{{vm.data.preWaitRemainingParsed || 0 | playbackTime:true}}</div>
         </div>
         <div class="progress">
-          <div class="elapsed" ng-class="{'finished': vm.data.finished}" ng-style="{width: (vm.data.preWaitElapsedParsed !== undefined ? (vm.data.preWaitElapsedParsed / vm.data.preWaitParsed * 100) : 0) + '%'}"></div>
+          <div class="elapsed" ng-style="{width: (vm.data.preWaitElapsedParsed !== undefined ? (vm.data.preWaitElapsedParsed / vm.data.preWaitParsed * 100) : 0) + '%'}"></div>
         </div>
       </div>
     </div>
@@ -65,10 +65,10 @@
     <div class="animate-container">
       <div class="time">
         <div>{{vm.data.actionElapsedParsed || 0 | playbackTime}}</div>
-        <div>{{vm.data.durationParsed || 0 | playbackTime}}</div>
+        <div>{{vm.data.actionRemainingParsed || 0 | playbackTime:true}}</div>
       </div>
       <div class="progress">
-        <div class="elapsed" ng-class="{'finished': vm.data.finished}" ng-style="{width: (vm.data.actionElapsedParsed !== undefined ? (vm.data.actionElapsedParsed / vm.data.durationParsed * 100) : 0) + '%'}"></div>
+        <div class="elapsed" ng-style="{width: (vm.data.actionElapsedParsed !== undefined ? (vm.data.actionElapsedParsed / vm.data.durationParsed * 100) : 0) + '%'}"></div>
       </div>
     </div>
   </div>
